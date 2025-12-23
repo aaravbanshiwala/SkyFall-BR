@@ -1,0 +1,8 @@
+name: SkyFallBR
+version: 1.0.0
+api-version: 1.21
+main: dev.vintage.SkyFallBR
+commands:
+  br:
+    description: SkyFall BR commands
+    usage: /br <subcommand>

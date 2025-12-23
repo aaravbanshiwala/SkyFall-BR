@@ -1,0 +1,136 @@
+# SkyFallBR Cosmetics Configuration
+# This file defines all cosmetic items available in the game.
+# Cosmetics can be unlocked through achievements, levels, purchases, or challenges.
+
+# Emote Configuration
+# Emotes are special animations/commands executed when players use /emote
+emotes:
+  # Basic dance emote - unlocked by default
+  default_dance:
+    name: "Default Dance"  # Display name in GUI
+    command: "summon minecraft:lightning_bolt ~ ~ ~"  # Minecraft command executed (use ~ for relative positioning)
+    duration: 5  # Duration in seconds
+    rarity: common  # Rarity tier (common, rare, legendary, epic)
+    unlockedBy: default  # Unlock method (default, achievement_*, level_*, shop_purchase, battle_pass_*, challenge_*)
+    
+  # Victory pose emote - requires first win achievement
+  victory_pose:
+    name: "Victory Pose"
+    command: "effect give @s minecraft:glowing 5 1 true"  # Gives glowing effect for 5 seconds
+    duration: 3
+    rarity: rare
+    unlockedBy: achievement_first_win
+    
+  # Epic flip emote - requires battle pass tier 10
+  epic_flip:
+    name: "Epic Flip"
+    command: "execute as @s at @s run tp @s ~ ~1 ~"  # Teleports player up 1 block
+    duration: 2
+    rarity: legendary
+    unlockedBy: battle_pass_tier_10
+
+# Trail Configuration
+# Trails are particle effects that follow players
+trails:
+  # Basic smoke trail
+  smoke_trail:
+    name: "Smoke Trail"
+    particle: SMOKE_NORMAL  # Minecraft particle type
+    pattern: circle  # Pattern type (circle, line, burst, spiral)
+    colors: []  # List of color names for colored particles (empty for default)
+    rarity: common
+    unlockedBy: default
+    
+  # Rainbow trail - requires level 10
+  rainbow_trail:
+    name: "Rainbow Trail"
+    particle: REDSTONE  # Redstone particles for color
+    pattern: line
+    colors: [RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE]  # Color sequence for rainbow effect
+    rarity: rare
+    unlockedBy: level_10
+    
+  # Fire trail - requires 100 kill challenge
+  fire_trail:
+    name: "Fire Trail"
+    particle: FLAME
+    pattern: burst
+    colors: []  # Fire particles don't use custom colors
+    rarity: legendary
+    unlockedBy: challenge_100_kills
+
+# Weapon Skin Configuration
+# Weapon skins change the appearance of weapons using custom model data
+weaponSkins:
+  # Golden sword skin - purchased from shop
+  golden_sword:
+    name: "Golden Sword"
+    weaponType: SWORD  # Weapon category (SWORD, AXE, BOW, etc.)
+    customModelData: 1  # Custom model data value (must match resource pack)
+    texture: "golden"  # Texture identifier for resource pack
+    rarity: rare
+    unlockedBy: shop_purchase
+    
+  # Diamond axe skin - requires battle pass tier 20
+  diamond_axe:
+    name: "Diamond Axe"
+    weaponType: AXE
+    customModelData: 2
+    texture: "diamond"
+    rarity: legendary
+    unlockedBy: battle_pass_tier_20
+
+# Death Effect Configuration
+# Effects played when players are eliminated
+deathEffects:
+  # Explosion death effect - requires 10 kill game achievement
+  explosion_death:
+    name: "Explosion Death"
+    effect: EXPLOSION_LARGE  # Minecraft particle/sound effect
+    rarity: rare
+    unlockedBy: achievement_ten_kill_game
+    
+  # Lightning death effect - requires 50 win challenge
+  lightning_death:
+    name: "Lightning Death"
+    effect: LIGHTNING
+    rarity: legendary
+    unlockedBy: challenge_50_wins
+
+# Kill Message Configuration
+# Custom kill messages displayed in chat
+killMessages:
+  # Basic elimination message
+  eliminated:
+    name: "Eliminated"
+    templates: ["{killer} eliminated {victim}"]  # List of message templates (supports {killer} and {victim} placeholders)
+    rarity: common
+    unlockedBy: default
+    
+  # Sniper kill message - requires level 5
+  sniped:
+    name: "Sniped"
+    templates: ["{killer} sniped {victim} from afar", "{killer} headshotted {victim}"]  # Multiple templates for variety
+    rarity: rare
+    unlockedBy: level_5
+    
+  # Dominated kill message - requires 5 win streak
+  dominated:
+    name: "Dominated"
+    templates: ["{killer} dominated {victim}", "{killer} owned {victim}"]
+    rarity: legendary
+    unlockedBy: win_streak_5
+
+# Rarity Tiers:
+# - common: Frequently available, low value
+# - rare: Moderately available, medium value  
+# - legendary: Rare, high value
+# - epic: Ultra rare, highest value
+
+# Unlock Methods:
+# - default: Available from start
+# - achievement_*: Unlocked by achievements
+# - level_*: Unlocked at specific player levels
+# - shop_purchase: Bought with in-game currency
+# - battle_pass_tier_*: Unlocked through battle pass progression
+# - challenge_*: Completed specific challenges

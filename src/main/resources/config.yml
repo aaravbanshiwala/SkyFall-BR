@@ -1,0 +1,214 @@
+# SkyFallBR Configuration File
+# This file controls all game settings, modes, loot, and performance options.
+# Changes require a server restart or /br reload command.
+
+# Supply Drop Settings
+# Controls the automatic supply drops that spawn loot crates in arenas.
+supplyDrop:
+  # Interval between supply drops in seconds (default: 120 = 2 minutes)
+  # Lower values increase loot availability but may impact performance.
+  interval: 120
+  
+  # Time in seconds for the supply drop to open after landing (default: 8)
+  # Players have this time to approach and open the crate.
+  openingTime: 8
+  
+  # Time in seconds before announcing the supply drop location (default: 30)
+  # Gives players time to prepare for the drop.
+  announcementTime: 30
+  
+  # Loot configuration for supply drops
+  # Items that spawn in supply drop crates
+  loot:
+    # Legendary weapon drop - rare high-tier weapon
+    legendaryWeapon:
+      material: DIAMOND_SWORD  # Minecraft material type
+      enchantments:  # List of enchantments to apply
+        - SHARPNESS:5  # Enchantment:level format
+        - UNBREAKING:3
+    # Healing items for survival
+    healingItems:
+      - material: GOLDEN_APPLE
+        amount: 2  # Number of items to spawn
+      - material: POTION
+        amount: 1
+        potionType: INSTANT_HEAL  # Potion effect type
+    # Ammunition for ranged combat
+    ammunition:
+      - material: ARROW
+        amount: 32
+    # Building materials for base construction
+    buildingMaterials:
+      - material: OAK_PLANKS
+        amount: 20
+      - material: STONE
+        amount: 15
+    # Rare consumables for tactical advantage
+    rareConsumables:
+      - material: TNT
+        amount: 3
+      - material: FIREWORK_ROCKET
+        amount: 5
+
+# Game Mode Configurations
+# Defines different game modes with unique rules, loot, and settings
+modes:
+  # Solo mode - 1 player teams, last standing wins
+  solo:
+    teamSize: 1  # Players per team
+    # Loot tables define what items spawn in chests
+    lootTables:
+      common:  # Common loot tier (higher spawn chance)
+        items:
+          - material: WOOD_SWORD
+            amount: 1
+          - material: BOW
+            amount: 1
+      rare:  # Rare loot tier (lower spawn chance)
+        items:
+          - material: IRON_SWORD
+            amount: 1
+            enchantments:
+              SHARPNESS: 2
+    weaponRestrictions: []  # List of restricted weapon materials (empty = no restrictions)
+    specialRules: []  # Special game rules (empty = standard rules)
+    winConditions: last_standing  # Win condition type
+    zoneShrinkSpeed: 1.0  # Zone shrink multiplier (1.0 = normal speed)
+    rewards:  # Points awarded for placements
+      win: 100  # Points for 1st place
+      top3: 50  # Points for top 3
+      
+  # Duos mode - 2 player teams
+  duos:
+    teamSize: 2
+    lootTables:
+      common:
+        items:
+          - material: WOOD_SWORD
+            amount: 1
+          - material: BOW
+            amount: 1
+      rare:
+        items:
+          - material: IRON_SWORD
+            amount: 1
+            enchantments:
+              SHARPNESS: 2
+    weaponRestrictions: []
+    specialRules: []
+    winConditions: last_team_standing
+    zoneShrinkSpeed: 1.0
+    rewards:
+      win: 200
+      top3: 100
+      
+  # Squads mode - 4 player teams
+  squads:
+    teamSize: 4
+    lootTables:
+      common:
+        items:
+          - material: WOOD_SWORD
+            amount: 1
+          - material: BOW
+            amount: 1
+      rare:
+        items:
+          - material: IRON_SWORD
+            amount: 1
+            enchantments:
+              SHARPNESS: 2
+    weaponRestrictions: []
+    specialRules: []
+    winConditions: last_team_standing
+    zoneShrinkSpeed: 1.0
+    rewards:
+      win: 400
+      top3: 200
+      
+  # Limited Time Mode: High Explosives - Focus on explosives and building
+  ltm_high_explosives:
+    teamSize: 1
+    lootTables:
+      common:
+        items:
+          - material: TNT
+            amount: 5
+          - material: FIRE_CHARGE
+            amount: 10
+          - material: SPLASH_POTION
+            amount: 3
+            potionType: HARMING
+      rare:
+        items:
+          - material: TNT
+            amount: 10
+          - material: FIRE_CHARGE
+            amount: 20
+    weaponRestrictions: [WOOD_SWORD, STONE_SWORD, IRON_SWORD, DIAMOND_SWORD, NETHERITE_SWORD, BOW, CROSSBOW]  # No melee or ranged weapons
+    specialRules: [higher_building_drops]  # Increased building material drops
+    winConditions: last_standing
+    zoneShrinkSpeed: 1.5  # Faster zone shrink
+    rewards:
+      win: 150
+      top3: 75
+      
+  # Limited Time Mode: Snipers - Ranged combat focus
+  ltm_snipers:
+    teamSize: 1
+    lootTables:
+      common:
+        items:
+          - material: BOW
+            amount: 1
+            enchantments:
+              POWER: 3
+          - material: CROSSBOW
+            amount: 1
+            enchantments:
+              PIERCING: 2
+      rare:
+        items:
+          - material: BOW
+            amount: 1
+            enchantments:
+              POWER: 5
+              INFINITY: 1
+          - material: SPECTRAL_ARROW
+            amount: 64
+    weaponRestrictions: [WOOD_SWORD, STONE_SWORD, IRON_SWORD, DIAMOND_SWORD, NETHERITE_SWORD]  # No melee weapons
+    specialRules: [one_shot_eliminations, increased_vision]  # One-shot kills, better visibility
+    winConditions: last_standing
+    zoneShrinkSpeed: 1.0
+    rewards:
+      win: 150
+      top3: 75
+      
+  # 50v50 mode - Large team battle
+  fifty_v_fifty:
+    teamSize: 25  # 25 players per team
+    lootTables:
+      common:
+        items:
+          - material: WOOD_SWORD
+            amount: 1
+          - material: BOW
+            amount: 1
+      rare:
+        items:
+          - material: IRON_SWORD
+            amount: 1
+            enchantments:
+              SHARPNESS: 2
+    weaponRestrictions: []
+    specialRules: [respawn_enabled, team_spawns]  # Players can respawn, team-based spawns
+    winConditions: team_elimination  # Win by eliminating the opposing team
+    zoneShrinkSpeed: 1.0
+    rewards:
+      win: 1000
+      top3: 500
+
+# Game Mode Rotation
+# List of game modes that cycle during gameplay
+# Use uppercase mode names as defined above
+modeRotation: [SOLO, DUOS, SQUADS, LTM_HIGH_EXPLOSIVES, LTM_SNIPERS, FIFTY_V_FIFTY]

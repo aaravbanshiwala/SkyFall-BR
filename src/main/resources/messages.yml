@@ -1,0 +1,34 @@
+# SkyFallBR Messages Configuration
+# This file contains all game messages and notifications.
+# Supports Minecraft color codes (& or §) and MiniMessage format.
+# Placeholders:
+# {player} - Player name
+# {achievement} - Achievement name
+# {killer} - Killer's name
+# {victim} - Victim's name
+# {count} - Generic count number
+# {time} - Time value
+# {mode} - Game mode name
+# {position} - Player position/rank
+
+# Achievement Messages
+# Messages displayed when players unlock achievements
+achievement_unlocked: "§aAchievement unlocked: §e{achievement}"  # Personal notification - green "Achievement unlocked:" followed by achievement name in yellow
+
+achievement_broadcast: "§e{player} §aunlocked §e{achievement}§a!"  # Server-wide broadcast - player name in yellow, achievement in yellow
+
+achievement_title: "§6Achievement Unlocked"  # Title displayed on screen - gold text
+
+achievement_subtitle: "§e{achievement}"  # Subtitle with achievement name - yellow text
+
+# Color Code Examples:
+# §0 Black    §1 Dark Blue    §2 Dark Green    §3 Dark Aqua
+# §4 Dark Red §5 Dark Purple §6 Gold         §7 Gray
+# §8 Dark Gray §9 Blue       §a Green       §b Aqua
+# §c Red      §d Light Purple §e Yellow      §f White
+# §k Obfuscated §l Bold      §m Strikethrough §n Underline §o Italic §r Reset
+
+# Formatting Tips:
+# - Use §r to reset formatting
+# - Combine codes: §l§cBold Red Text§r
+# - For gradients or advanced formatting, consider MiniMessage plugin
